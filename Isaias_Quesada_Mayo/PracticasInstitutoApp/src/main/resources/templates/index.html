@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alumnos en Prácticas</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 14px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #222;
+            color: white;
+        }
+
+        .top {
+            background: #ffe082;
+            font-weight: bold;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            background: #1976d2;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Gestión de Alumnos en Prácticas</h1>
+
+<a href="/nuevo" class="btn">Registrar Alumno</a>
+
+<br><br>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Alumno Destacado</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="a : ${alumnos}"
+            th:classappend="${a.id == mejorAlumnoId} ? 'top'">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.nombre}"></td>
+            <td th:text="${a.apellidos}"></td>
+            <td th:text="${a.dni}"></td>
+            <td th:text="${a.id == mejorAlumnoId} ? '🏆 Mayor acumulado en becas' : '-'"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
